@@ -3,6 +3,7 @@ import re
 import logging
 import urllib.parse
 from unidecode import unidecode
+from os import path
 import bibtexparser
 
 logger = logging.getLogger('pdf2bib')
