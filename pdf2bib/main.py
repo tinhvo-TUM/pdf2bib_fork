@@ -159,7 +159,7 @@ def pdf2bib_singlefile(filename):
 
     if metadata: #if retrieval of bibtex data was succesful, we add the fields to the result dictionary
         result['metadata'] = metadata
-        result['bibtex'] = bibtex_makers.make_bibtex(metadata)
+        result['bibtex'] = bibtex_makers.make_bibtex(metadata,filename)
         logger.info(f"A valid BibTeX entry was generated.") 
     else:
         result['metadata'] = None

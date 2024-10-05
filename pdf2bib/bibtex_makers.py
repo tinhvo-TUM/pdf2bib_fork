@@ -141,7 +141,7 @@ def parse_bib_from_exportarxivorg(items):
     return data_dict
 
 
-def make_bibtex(metadata):
+def make_bibtex(metadata,filename):
     #Based on the metadata contained in the input dictionary metadata, it creates a valid bibtex entry
     #The ID of the bibtex entry has the format [lastname_firstauthor][year][first_word_title] all in lower case
     #If the tag url is present, any possible ascii code (e.g. %2f) is decoded
@@ -174,9 +174,7 @@ def make_bibtex(metadata):
         first_word_title =  data['title'].split(' ')[0] if 'title' in data.keys()  else ''
     except:
         first_word_title =''
-    id = lastname_firstauthor + str(year) + first_word_title
-    id = id.lower()
-    id = remove_latex_codes(id)
+    id = path.splitext(path.basename(filename))[0]
     id = unidecode(id) #This makes sure that the id of the bibtex entry is only made out of ascii characters (i.e. no accents, tildes, etc.)
     id = re.sub(
         "-|,|:|'|\\n", "", id
